@@ -23,6 +23,7 @@
 		12BADF021BFD741700C36C05 /* ATNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADEFD1BFD741700C36C05 /* ATNavigationController.m */; };
 		12BADF031BFD741700C36C05 /* ATBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADEFF1BFD741700C36C05 /* ATBaseController.m */; };
 		12BADF041BFD741700C36C05 /* ATBaseWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADF011BFD741700C36C05 /* ATBaseWebViewVC.m */; };
+		12BADF071BFD939C00C36C05 /* ATTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADF061BFD939C00C36C05 /* ATTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		12BADEFF1BFD741700C36C05 /* ATBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBaseController.m; sourceTree = "<group>"; };
 		12BADF001BFD741700C36C05 /* ATBaseWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBaseWebViewVC.h; sourceTree = "<group>"; };
 		12BADF011BFD741700C36C05 /* ATBaseWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBaseWebViewVC.m; sourceTree = "<group>"; };
+		12BADF051BFD939C00C36C05 /* ATTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTabBarController.h; sourceTree = "<group>"; };
+		12BADF061BFD939C00C36C05 /* ATTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,7 @@
 		12BADEE51BFD72CC00C36C05 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				12BADF081BFD941200C36C05 /* ViewController */,
 				12BADEE91BFD72FC00C36C05 /* BaseVC */,
 				12BADEE81BFD72EE00C36C05 /* Category */,
 				12BADEE71BFD72E100C36C05 /* Config */,
@@ -196,12 +200,21 @@
 			children = (
 				12BADEFC1BFD741700C36C05 /* ATNavigationController.h */,
 				12BADEFD1BFD741700C36C05 /* ATNavigationController.m */,
+				12BADF051BFD939C00C36C05 /* ATTabBarController.h */,
+				12BADF061BFD939C00C36C05 /* ATTabBarController.m */,
 				12BADEFE1BFD741700C36C05 /* ATBaseController.h */,
 				12BADEFF1BFD741700C36C05 /* ATBaseController.m */,
 				12BADF001BFD741700C36C05 /* ATBaseWebViewVC.h */,
 				12BADF011BFD741700C36C05 /* ATBaseWebViewVC.m */,
 			);
 			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		12BADF081BFD941200C36C05 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +323,7 @@
 				12BADEB71BFD71E500C36C05 /* main.m in Sources */,
 				12BADEF31BFD737A00C36C05 /* MBProgressHUD.m in Sources */,
 				12BADF031BFD741700C36C05 /* ATBaseController.m in Sources */,
+				12BADF071BFD939C00C36C05 /* ATTabBarController.m in Sources */,
 				12BADEF11BFD737A00C36C05 /* MBProgressHUD+AT.m in Sources */,
 				12BADF021BFD741700C36C05 /* ATNavigationController.m in Sources */,
 				12BADF041BFD741700C36C05 /* ATBaseWebViewVC.m in Sources */,
@@ -502,6 +516,7 @@
 				12BADED61BFD71E500C36C05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12BADED71BFD71E500C36C05 /* Build configuration list for PBXNativeTarget "WebViewPJTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +525,7 @@
 				12BADED91BFD71E500C36C05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

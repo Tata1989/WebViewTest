@@ -32,7 +32,7 @@
 {
     self.title = self.navigationItemTitle;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64+49)];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
@@ -68,7 +68,7 @@
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"webViewDidStartLoad");
-    [MBProgressHUD showLoading];
+//    [MBProgressHUD showLoading];
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -92,7 +92,7 @@
         self.navigationItem.leftBarButtonItems = @[];
     }
 //      [self stopAnimation];
-    [MBProgressHUD hideHUD];
+//    [MBProgressHUD hideHUD];
     NSLog(@"------>>>    %@",webView.request.URL);
     
 }
