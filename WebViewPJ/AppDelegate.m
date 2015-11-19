@@ -1,12 +1,16 @@
 //
 //  AppDelegate.m
-//  WebViewPJ
+//  Test
 //
-//  Created by wangxinxin on 15/11/19.
+//  Created by wangxinxin on 15/11/18.
 //  Copyright (c) 2015年 wangxinxin. All rights reserved.
 //
 
 #import "AppDelegate.h"
+
+#import "ATNavigationController.h"
+#import "MainWebView.h"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +21,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    MainWebView *mainVC = [[MainWebView alloc] init];
+    mainVC.webUrl = @"http://cn.asiatravel.net/mobile/"; //http://10.2.21.231/frame/index.html
+    mainVC.navigationItemTitle = @"亚洲旅游";
+    
+    ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:mainVC];
+    
+    self.window.rootViewController = nav;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

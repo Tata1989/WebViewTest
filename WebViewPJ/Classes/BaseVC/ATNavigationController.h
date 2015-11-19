@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ATNavigationController.h
 //  Test
 //
 //  Created by wangxinxin on 15/11/18.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface ATNavigationController : UINavigationController
 
 @end
-
