@@ -104,6 +104,20 @@
     //判断是不是tel也就是打电话按钮被点击
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
 //        self.webUrl = request.URL.absoluteString;
+ 
+            if ([request.URL.absoluteString hasPrefix:@"tel"])
+            {
+                
+            }else {
+                
+                ATBaseWebViewVC *webViewVC = [[ATBaseWebViewVC alloc] init];
+                webViewVC.webUrl = request.URL.absoluteString;
+                //            self.webUrl = request.URL.absoluteString;
+                DDLog(@"push新的控制器");
+                [self.navigationController pushViewController:webViewVC animated:YES];
+                
+                return NO;
+            }
 
     }
     return YES;

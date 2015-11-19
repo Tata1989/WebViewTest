@@ -25,7 +25,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     MainWebView *mainVC = [[MainWebView alloc] init];
-    mainVC.webUrl = @"http://cn.asiatravel.net/mobile/"; //http://10.2.21.231/frame/index.html
+//    mainVC.webUrl = @"http://cn.asiatravel.net/mobile/"; 
+    mainVC.webUrl = @"http://10.2.21.231/frame/index.html";
     mainVC.navigationItemTitle = @"亚洲旅游";
     
     ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:mainVC];

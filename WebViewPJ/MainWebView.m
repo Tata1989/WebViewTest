@@ -63,9 +63,7 @@
             return NO;
         }
    
-     } else if (navigationType == UIWebViewNavigationTypeOther && [request.URL isEqual:[NSURL URLWithString:@"http://3g.xywy.com/?v=app_in"]]) {
-        
-    }
+     }
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
