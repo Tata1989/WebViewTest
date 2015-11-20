@@ -36,7 +36,8 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
-    _webView.backgroundColor = [UIColor whiteColor];
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
 
