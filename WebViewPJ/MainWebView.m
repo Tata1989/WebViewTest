@@ -32,7 +32,7 @@
 {
     self.title = self.navigationItemTitle;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64+49)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
@@ -75,6 +75,14 @@
 {
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     NSLog(@"title      = %@",title);
+    
+    if([webView.request.URL.absoluteString hasPrefix:kBaseFrameURL]){
+    
+        NSString *hideFooerJS = [NSString stringWithFormat:@"var footer= document.getElementById('menu');footer.style.display = 'none';"];
+        [webView stringByEvaluatingJavaScriptFromString:hideFooerJS];
+    }
+    
+    
     
     if ([webView canGoBack]) {
         UIButton *gobackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
