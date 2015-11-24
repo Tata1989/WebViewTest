@@ -77,13 +77,13 @@
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     NSLog(@"title      = %@",title);
     
-    if([webView.request.URL.absoluteString hasPrefix:kBaseFrameURL]){
+    if([webView.request.URL.absoluteString hasPrefix:kBaseURL]){
     
         NSString *hideFooerJS = [NSString stringWithFormat:@"var footer= document.getElementById('menu');footer.style.display = 'none';"];
         [webView stringByEvaluatingJavaScriptFromString:hideFooerJS];
+        
+        
     }
-    
-    
     
     if ([webView canGoBack]) {
         UIButton *gobackBtn = [UIButton buttonWithType:UIButtonTypeCustom];

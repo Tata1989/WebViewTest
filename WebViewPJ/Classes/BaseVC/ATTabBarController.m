@@ -46,25 +46,25 @@
     //首页
     MainWebView *homeVC = [[MainWebView alloc] init];
     homeVC.navigationItemTitle = @"首页";
-    homeVC.webUrl = @"http://10.2.21.231/frame/index.html";
+    homeVC.webUrl = [NSString stringWithFormat:@"%@",kBaseURL];
     [self setupChildViewController:homeVC title:@"首页" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
     
     //订单
     MainWebView *orderVC = [[MainWebView alloc] init];
     orderVC.navigationItemTitle = @"订单";
-    orderVC.webUrl = @"http://10.2.21.231/frame/order.html";
+    orderVC.webUrl = [NSString stringWithFormat:@"%@order.html",kBaseURL];
     [self setupChildViewController:orderVC title:@"订单" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
     
     //客服
     MainWebView *customerServiceVC = [[MainWebView alloc] init];
     customerServiceVC.navigationItemTitle = @"客服";
-    customerServiceVC.webUrl = @"http://10.2.21.231/frame/service.html";
+    customerServiceVC.webUrl = [NSString stringWithFormat:@"%@service.html",kBaseURL];
     [self setupChildViewController:customerServiceVC title:@"客服" imageName:@"tabbar_mine_normal" selectedImageName:@"tabbar_mine_selected"];
     
     //我的
     MainWebView *mineVC = [[MainWebView alloc] init];
     mineVC.navigationItemTitle = @"我的";
-    mineVC.webUrl = @"http://10.2.21.231/frame/user.html";
+    mineVC.webUrl = [NSString stringWithFormat:@"%@user.html",kBaseURL];
     [self setupChildViewController:mineVC title:@"我的" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
     
 }
