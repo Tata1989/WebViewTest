@@ -33,6 +33,9 @@
     self.title = self.navigationItemTitle;
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
+    if (self.navigationController.navigationBarHidden == YES) {
+        _webView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    }
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;

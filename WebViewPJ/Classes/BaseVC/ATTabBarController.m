@@ -94,6 +94,10 @@
     
     // 2.包装一个导航控制器
     ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:childVc];
+    
+    if ([title isEqualToString:@"首页"]) {
+        nav.navigationBarHidden = YES;
+    }
     [self addChildViewController:nav];
     
    

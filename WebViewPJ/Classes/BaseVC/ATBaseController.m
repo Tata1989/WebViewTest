@@ -34,8 +34,19 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     if([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)])
         self.automaticallyAdjustsScrollViewInsets = NO;
-//
     
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    
+    if ([self.navigationController.navigationItem.title isEqualToString:@"首页"] //隐藏首页的导航栏
+        && self.navigationController.viewControllers.count == 1) {
+        self.navigationController.navigationBarHidden = YES;
+    }
+    else{
+        self.navigationController.navigationBarHidden = NO;
+    }
 }
 
 #pragma mark --返回按钮--
@@ -115,12 +126,6 @@
     [naviController.navigationBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x63B8FF)] forBarMetrics:UIBarMetricsDefault];
     [naviController.navigationBar setBackgroundColor:UIColorFromRGB(0x63B8FF)]; // 设置导航栏背景颜色
     
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
 }
 
 - (void)leftbarbuttonAction
