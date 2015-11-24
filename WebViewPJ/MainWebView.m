@@ -72,7 +72,6 @@
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"webViewDidStartLoad");
-//    [MBProgressHUD showLoading];
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -103,8 +102,7 @@
     }else{
         self.navigationItem.leftBarButtonItems = @[];
     }
-//      [self stopAnimation];
-//    [MBProgressHUD hideHUD];
+
     NSLog(@"------>>>    %@",webView.request.URL);
     
 }
@@ -117,7 +115,6 @@
         self.navigationItem.leftBarButtonItems = @[];
         
     }
-    [self stopAnimation];
     NSLog(@"------>>>    %@",webView.request.URL);
     
 }
@@ -135,8 +132,7 @@
         [self stopAnimation];
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
     });
-    
-//    [MBProgressHUD showMessage:@"网络好像不太给力，请稍后再试" time:3];
+
 }
 
 @end

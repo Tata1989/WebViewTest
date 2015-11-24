@@ -10,20 +10,6 @@
 
 @interface ATBaseWebViewVC ()<UIWebViewDelegate>
 
-{
-    UIButton *_closeBtn;
-    UIButton *_button;
-    UIButton *_button0;
-    UILabel *_titleLabel;
-    //_statues = 1,返回按钮是返回到根目录；否则返回上一级页面
-    NSInteger _statues;
-    NSInteger _myPageCount;
-    NSInteger _myBackCount;
-    BOOL _myStatues;
-    
-}
-
-@property (nonatomic, strong)     NSString *beforeUrl;
 @property (nonatomic, strong)     UIWebView *webView;
 
 
@@ -35,14 +21,11 @@
 {
     [super viewWillDisappear:YES];
     
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self setUpNavigationBarRefresh];
-//    [self rightBtnAction];
     
     [self setupNavigationBar:self.navigationController];
     [self setUpNavigationBarLeftBack];
@@ -89,14 +72,17 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"webViewDidStartLoad");
-    [MBProgressHUD showLoading];
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [MBProgressHUD hideHUD];
     NSLog(@"webViewDidFinishLoad");
     
+    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    NSLog(@"title      = %@",title);
+    self.navigationItem.title = title;
+    
+    NSString *hideHeaderJS = [webView stringByEvaluatingJavaScriptFromString:@"var header = document.getElementById('vlm-h-1');header.parentNode.removeChild(header);"];
+    [webView stringByEvaluatingJavaScriptFromString:hideHeaderJS];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -112,7 +98,6 @@
                 
                 ATBaseWebViewVC *webViewVC = [[ATBaseWebViewVC alloc] init];
                 webViewVC.webUrl = request.URL.absoluteString;
-                //            self.webUrl = request.URL.absoluteString;
                 DDLog(@"push新的控制器");
                 [self.navigationController pushViewController:webViewVC animated:YES];
                 
@@ -126,21 +111,6 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     NSLog(@"err0r =%@",error);
-    [MBProgressHUD hideHUD];
-}
-
-#pragma mark --刷新--
-- (void)refreshRightbarbuttonAction
-{
-    DDLog(@"refreshRightbarbuttonAction");
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self stopAnimation];
-        
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
- 
-        
-    });
-    
 }
 
 

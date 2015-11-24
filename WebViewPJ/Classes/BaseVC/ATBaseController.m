@@ -123,8 +123,8 @@
     //        [naviController.navigationBar sendSubviewToBack:imageView];
     //    }
     
-    [naviController.navigationBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x63B8FF)] forBarMetrics:UIBarMetricsDefault];
-    [naviController.navigationBar setBackgroundColor:UIColorFromRGB(0x63B8FF)]; // 设置导航栏背景颜色
+    [naviController.navigationBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x16364f)] forBarMetrics:UIBarMetricsDefault];
+    [naviController.navigationBar setBackgroundColor:UIColorFromRGB(0x16364f)]; // 设置导航栏背景颜色
     
 }
 

@@ -28,10 +28,6 @@
  
 }
 
-//- (void)loadView{
-//    
-//    [self setupAllChildViewControllers];
-//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,30 +38,16 @@
 
 - (void)setupAllChildViewControllers
 {
+    NSArray *titleArray = @[@"首页", @"订单", @"客服",@"我的"];
+    NSArray *urlStrArray =@[@"", @"order.html", @"service.html",@"user.html"];
+    
+    for (int i = 0; i < titleArray.count; i++) {
+         MainWebView *tmpVC = [[MainWebView alloc] init];
+        tmpVC.navigationItemTitle = titleArray[i];
+        tmpVC.webUrl = [NSString stringWithFormat:@"%@%@",kBaseURL,urlStrArray[i]];
+        [self setupChildViewController:tmpVC title:titleArray[i] imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
 
-    //首页
-    MainWebView *homeVC = [[MainWebView alloc] init];
-    homeVC.navigationItemTitle = @"首页";
-    homeVC.webUrl = [NSString stringWithFormat:@"%@",kBaseURL];
-    [self setupChildViewController:homeVC title:@"首页" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
-    
-    //订单
-    MainWebView *orderVC = [[MainWebView alloc] init];
-    orderVC.navigationItemTitle = @"订单";
-    orderVC.webUrl = [NSString stringWithFormat:@"%@order.html",kBaseURL];
-    [self setupChildViewController:orderVC title:@"订单" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
-    
-    //客服
-    MainWebView *customerServiceVC = [[MainWebView alloc] init];
-    customerServiceVC.navigationItemTitle = @"客服";
-    customerServiceVC.webUrl = [NSString stringWithFormat:@"%@service.html",kBaseURL];
-    [self setupChildViewController:customerServiceVC title:@"客服" imageName:@"tabbar_mine_normal" selectedImageName:@"tabbar_mine_selected"];
-    
-    //我的
-    MainWebView *mineVC = [[MainWebView alloc] init];
-    mineVC.navigationItemTitle = @"我的";
-    mineVC.webUrl = [NSString stringWithFormat:@"%@user.html",kBaseURL];
-    [self setupChildViewController:mineVC title:@"我的" imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];
+    }
     
 }
 /**
@@ -94,7 +76,6 @@
     
     // 2.包装一个导航控制器
     ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:childVc];
-    
     if ([title isEqualToString:@"首页"]) {
         nav.navigationBarHidden = YES;
     }
