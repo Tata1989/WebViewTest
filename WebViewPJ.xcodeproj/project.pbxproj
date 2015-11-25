@@ -34,6 +34,7 @@
 		12E3716D1C05561300188D0B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E371641C05561300188D0B /* AFURLSessionManager.m */; };
 		12E371701C0556B600188D0B /* AFNetworkReachabilityManager+NetworkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E3716F1C0556B600188D0B /* AFNetworkReachabilityManager+NetworkReachability.m */; };
 		12E371741C05585800188D0B /* NetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E371731C05585800188D0B /* NetworkTool.m */; };
+		12E371781C05925800188D0B /* LoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E371771C05925800188D0B /* LoadingIndicatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		12E3716F1C0556B600188D0B /* AFNetworkReachabilityManager+NetworkReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFNetworkReachabilityManager+NetworkReachability.m"; sourceTree = "<group>"; };
 		12E371721C05585800188D0B /* NetworkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTool.h; sourceTree = "<group>"; };
 		12E371731C05585800188D0B /* NetworkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTool.m; sourceTree = "<group>"; };
+		12E371761C05925800188D0B /* LoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingIndicatorView.h; sourceTree = "<group>"; };
+		12E371771C05925800188D0B /* LoadingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingIndicatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,7 @@
 		12BADEE51BFD72CC00C36C05 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				12E371751C05921600188D0B /* Widgets */,
 				12E371711C05579800188D0B /* GlobalTools */,
 				12BADEE91BFD72FC00C36C05 /* BaseVC */,
 				12BADEE81BFD72EE00C36C05 /* Category */,
@@ -283,6 +287,15 @@
 				12E371731C05585800188D0B /* NetworkTool.m */,
 			);
 			path = GlobalTools;
+			sourceTree = "<group>";
+		};
+		12E371751C05921600188D0B /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				12E371761C05925800188D0B /* LoadingIndicatorView.h */,
+				12E371771C05925800188D0B /* LoadingIndicatorView.m */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +420,7 @@
 				12E371691C05561300188D0B /* AFSecurityPolicy.m in Sources */,
 				12E371741C05585800188D0B /* NetworkTool.m in Sources */,
 				12BADEFB1BFD740B00C36C05 /* UIImage+AT.m in Sources */,
+				12E371781C05925800188D0B /* LoadingIndicatorView.m in Sources */,
 				12BADEE11BFD724B00C36C05 /* AppDelegate.m in Sources */,
 				12BADEFA1BFD740B00C36C05 /* UIBarButtonItem+AT.m in Sources */,
 			);

@@ -7,10 +7,12 @@
 //
 
 #import "ATBaseWebViewVC.h"
+#import "LoadingIndicatorView.h"
 
 @interface ATBaseWebViewVC ()<UIWebViewDelegate>
 
 @property (nonatomic, strong)     UIWebView *webView;
+@property (nonatomic, strong)     LoadingIndicatorView *indicator;
 
 
 @end
@@ -38,10 +40,17 @@
     
     
     self.title = self.navigationItemTitle ? self.navigationItemTitle : @"亚洲旅游";
+    
+    
+    _indicator = [[LoadingIndicatorView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-40, self.view.frame.size.height/2-40, 80, 80)];
+    [_indicator setLoadText:@"正在加载..."];
+    [self.view addSubview:_indicator];
+     [_indicator startAnimation];
+    
 
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-kNavBarHeight)];
     if (self.navigationController.navigationBarHidden == YES && [self.navigationItemTitle isEqualToString:@"首页"]) {
-        _webView.frame = CGRectMake(0, -kStatusBarHeight, ScreenWidth, ScreenHeight+kStatusBarHeight);
+       // _webView.frame = CGRectMake(0, -kStatusBarHeight, ScreenWidth, ScreenHeight+kStatusBarHeight);
     }
     DDLog(@"_webView.frame:%@",NSStringFromCGRect(_webView.frame));
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
@@ -78,10 +87,16 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     DDLog(@"webViewDidFinishLoad");
+   [_indicator stopAnimationWithLoadText:@"加载成功" withType:YES];//加载成功
     
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     DDLog(@"title      = %@",title);
     self.navigationItem.title = [self getDomTitle:title];
+    
+    //隐藏preloader
+    NSString *hidePreloaderJS = [webView stringByEvaluatingJavaScriptFromString:@"var preloader = document.getElementById('preloader');preloader.style.display = 'none';;"];
+    [webView stringByEvaluatingJavaScriptFromString:hidePreloaderJS];
+
     
     //隐藏头部header
     NSString *hideHeaderJS = [webView stringByEvaluatingJavaScriptFromString:@"var header = document.getElementById('vlm-h-1');header.parentNode.removeChild(header);"];
@@ -135,7 +150,7 @@
         [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
     }
     else{
-        [MBProgressHUD showMessage:@"请求失败，请重新加载" time:3];
+         [_indicator stopAnimationWithLoadText:@"加载失败" withType:NO];//加载失败
     }
     DDLog(@"error =%@",error);
 }
