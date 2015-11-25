@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum LoadResultState{
+    
+    LoadResultStateSuccess,                //加载成功
+    LoadResultStateFailed,                 //加载失败
+    
+}LoadResultState;
+
 @interface LoadingIndicatorView : UIView
 
 @property (nonatomic, assign) NSString *loadtext;
@@ -19,5 +26,5 @@
 -(void)setLoadText:(NSString *)text;
 
 - (void)startAnimation;
-- (void)stopAnimationWithLoadText:(NSString *)text withType:(BOOL)type;
+- (void)stopAnimationWithLoadText:(NSString *)text withState:(LoadResultState)state;
 @end

@@ -42,7 +42,7 @@
     self.title = self.navigationItemTitle ? self.navigationItemTitle : @"亚洲旅游";
     
     
-    _indicator = [[LoadingIndicatorView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-40, self.view.frame.size.height/2-40, 80, 80)];
+    _indicator = [[LoadingIndicatorView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-40, self.view.frame.size.height/2-50, 80, 100)];
     [_indicator setLoadText:@"正在加载..."];
     [self.view addSubview:_indicator];
      [_indicator startAnimation];
@@ -60,6 +60,8 @@
     _webView.opaque = NO;
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
+    
+    [self.view bringSubviewToFront:_indicator];
     
 }
 
@@ -87,7 +89,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     DDLog(@"webViewDidFinishLoad");
-   [_indicator stopAnimationWithLoadText:@"加载成功" withType:YES];//加载成功
+    [_indicator stopAnimationWithLoadText:@"加载成功" withState:LoadResultStateSuccess];//加载成功
     
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     DDLog(@"title      = %@",title);
@@ -150,7 +152,7 @@
         [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
     }
     else{
-         [_indicator stopAnimationWithLoadText:@"加载失败" withType:NO];//加载失败
+         [_indicator stopAnimationWithLoadText:@"加载失败" withState:LoadResultStateFailed];//加载失败
     }
     DDLog(@"error =%@",error);
 }
