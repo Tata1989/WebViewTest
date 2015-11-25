@@ -12,9 +12,6 @@
 @interface MainWebView ()<UIWebViewDelegate>
 {
     UIWebView *_webView ;
-    UIBarButtonItem *_reloadItem;
-    UIButton *_reloadBtn;
-    
 }
 @end
 
@@ -23,13 +20,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self setUpNavigationBarRefresh];
-//    [self rightBtnAction];
     [self setupNavigationBar:self.navigationController];
 }
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.title = self.navigationItemTitle;
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64)];
@@ -48,7 +45,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    NSLog(@"shouldStartLoadWithRequest－－－%@",request.URL);
+    DDLog(@"shouldStartLoadWithRequest－－－%@",request.URL);
     
     //判断是否是单击事件
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
@@ -71,13 +68,13 @@
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidStartLoad");
+    DDLog(@"webViewDidStartLoad");
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    NSLog(@"title      = %@",title);
+    DDLog(@"title      = %@",title);
     
     if([webView.request.URL.absoluteString hasPrefix:kBaseURL]){
     
@@ -108,19 +105,14 @@
         self.navigationItem.leftBarButtonItems = @[];
     }
 
-    NSLog(@"------>>>    %@",webView.request.URL);
+    DDLog(@"------>>>    %@",webView.request.URL);
     
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    NSLog(@"title      = %@",title);
-    
-    if (!webView.canGoBack) {
-        self.navigationItem.leftBarButtonItems = @[];
-        
+    if ([NetworkTool networkStatus] == NO) {
+        [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
     }
-    NSLog(@"------>>>    %@",webView.request.URL);
     
 }
 
@@ -129,15 +121,6 @@
     [_webView goBack];
 }
 
-#pragma mark --刷新--
-- (void)refreshRightbarbuttonAction
-{
-    DDLog(@"refreshRightbarbuttonAction");
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self stopAnimation];
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
-    });
 
-}
 
 @end

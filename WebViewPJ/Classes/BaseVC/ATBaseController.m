@@ -7,6 +7,7 @@
 //
 
 #import "ATBaseController.h"
+#import "NetworkTool.h"
 
 @interface ATBaseController ()
 
@@ -23,22 +24,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = UIColorFromRGB(0xffffff);
-    self.view.exclusiveTouch = YES;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = UIColorFromRGB(0xeeeeee);
+    if ([NetworkTool networkStatus] == NO) {
+//        [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
     }
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    if([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)])
-        self.automaticallyAdjustsScrollViewInsets = NO;
+
     
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     
     if ([self.navigationController.navigationItem.title isEqualToString:@"首页"] //隐藏首页的导航栏
         && self.navigationController.viewControllers.count == 1) {
@@ -108,20 +102,7 @@
     naviController.navigationBar.titleTextAttributes = @{
                                                          NSForegroundColorAttributeName : UIColorFromRGB(0xffffff), NSFontAttributeName : [UIFont fontWithName:@"TrebuchetMS-Bold"                                                                                                                size:NAVIGATION_TITLE_FONT_SIZE]
                                                          };
-    
-    //    if ([naviController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-    //        NSArray *list=naviController.navigationBar.subviews;
-    //        for (id obj in list) {
-    //            if ([obj isKindOfClass:[UIImageView class]]) {
-    //                UIImageView *imageView=(UIImageView *)obj;
-    //                imageView.hidden=YES;
-    //            }
-    //        }
-    //        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, -20, 420, 64)];
-    //        imageView.image=[UIImage imageWithColor:UIColorFromRGB(0xef1a0a)];
-    //        [naviController.navigationBar addSubview:imageView];
-    //        [naviController.navigationBar sendSubviewToBack:imageView];
-    //    }
+
     
     [naviController.navigationBar setBackgroundImage:[UIImage imageWithColor:UIColorFromRGB(0x16364f)] forBarMetrics:UIBarMetricsDefault];
     [naviController.navigationBar setBackgroundColor:UIColorFromRGB(0x16364f)]; // 设置导航栏背景颜色
