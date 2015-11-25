@@ -9,7 +9,6 @@
 #import "ATTabBarController.h"
 #import "ATNavigationController.h"
 #import "ATBaseWebViewVC.h"
-#import "MainWebView.h"
 
 @interface ATTabBarController ()<UITabBarControllerDelegate>
 {
@@ -21,12 +20,6 @@
 @end
 
 @implementation ATTabBarController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-//    [self setup];
- 
-}
 
 - (void)viewDidLoad
 {
@@ -42,7 +35,8 @@
     NSArray *urlStrArray =@[@"", @"order.html", @"service.html",@"user.html"];
     
     for (int i = 0; i < titleArray.count; i++) {
-         MainWebView *tmpVC = [[MainWebView alloc] init];
+         ATBaseWebViewVC *tmpVC = [[ATBaseWebViewVC alloc] init];
+        tmpVC.canBack = NO;
         tmpVC.navigationItemTitle = titleArray[i];
         tmpVC.webUrl = [NSString stringWithFormat:@"%@%@",kBaseURL,urlStrArray[i]];
         [self setupChildViewController:tmpVC title:titleArray[i] imageName:@"tabbar_mine_normal"  selectedImageName:@"tabbar_mine_selected"];

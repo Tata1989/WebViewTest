@@ -12,7 +12,6 @@
 		12BADEC51BFD71E500C36C05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12BADEC31BFD71E500C36C05 /* LaunchScreen.xib */; };
 		12BADED11BFD71E500C36C05 /* WebViewPJTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADED01BFD71E500C36C05 /* WebViewPJTests.m */; };
 		12BADEDB1BFD720600C36C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12BADEDA1BFD720600C36C05 /* Main.storyboard */; };
-		12BADEDE1BFD723400C36C05 /* MainWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADEDD1BFD723400C36C05 /* MainWebView.m */; };
 		12BADEE11BFD724B00C36C05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADEE01BFD724B00C36C05 /* AppDelegate.m */; };
 		12BADEF01BFD737A00C36C05 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 12BADEEA1BFD737A00C36C05 /* LICENSE */; };
 		12BADEF11BFD737A00C36C05 /* MBProgressHUD+AT.m in Sources */ = {isa = PBXBuildFile; fileRef = 12BADEEC1BFD737A00C36C05 /* MBProgressHUD+AT.m */; };
@@ -57,8 +56,6 @@
 		12BADECF1BFD71E500C36C05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12BADED01BFD71E500C36C05 /* WebViewPJTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewPJTests.m; sourceTree = "<group>"; };
 		12BADEDA1BFD720600C36C05 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		12BADEDC1BFD723400C36C05 /* MainWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWebView.h; sourceTree = "<group>"; };
-		12BADEDD1BFD723400C36C05 /* MainWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWebView.m; sourceTree = "<group>"; };
 		12BADEDF1BFD724B00C36C05 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		12BADEE01BFD724B00C36C05 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		12BADEEA1BFD737A00C36C05 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 				12BADEE51BFD72CC00C36C05 /* Classes */,
 				12BADEDF1BFD724B00C36C05 /* AppDelegate.h */,
 				12BADEE01BFD724B00C36C05 /* AppDelegate.m */,
-				12BADEDC1BFD723400C36C05 /* MainWebView.h */,
-				12BADEDD1BFD723400C36C05 /* MainWebView.m */,
 				12BADEDA1BFD720600C36C05 /* Main.storyboard */,
 				12BADEC11BFD71E500C36C05 /* Images.xcassets */,
 				12BADEC31BFD71E500C36C05 /* LaunchScreen.xib */,
@@ -394,7 +389,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				12E371651C05561300188D0B /* AFHTTPRequestOperation.m in Sources */,
-				12BADEDE1BFD723400C36C05 /* MainWebView.m in Sources */,
 				12E371701C0556B600188D0B /* AFNetworkReachabilityManager+NetworkReachability.m in Sources */,
 				12BADEB71BFD71E500C36C05 /* main.m in Sources */,
 				12BADEF31BFD737A00C36C05 /* MBProgressHUD.m in Sources */,

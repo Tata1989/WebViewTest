@@ -11,12 +11,6 @@
 
 @interface ATBaseController ()
 
-{
-    UIBarButtonItem *_reloadItem;
-    UIButton *_reloadBtn;
-
-}
-
 @end
 
 @implementation ATBaseController
@@ -51,51 +45,6 @@
     negativeSpacer.width = 10;
     self.navigationItem.leftBarButtonItems = @[negativeSpacer,leftButtonItem];
 }
-
-#pragma mark -- 刷新按钮 --
-- (void)setUpNavigationBarRefresh
-{
-    _reloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _reloadBtn.frame = CGRectMake(0, 0, 40, 40);
-    [_reloadBtn setImage:[UIImage imageNamed:@"nav_fresh"] forState:UIControlStateNormal];
-    [_reloadBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    _reloadItem = [[UIBarButtonItem alloc]initWithCustomView:_reloadBtn];
-    self.navigationItem.rightBarButtonItem = _reloadItem;
-}
-
-
-- (void)refreshAnimation
-{
-    [_reloadBtn setImage:[UIImage imageNamed:@"nav_loading"] forState:UIControlStateNormal];
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2 ];
-    rotationAnimation.duration = 1;
-    rotationAnimation.cumulative = NO;
-    rotationAnimation.repeatCount = 100000;
-    [_reloadBtn.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-
-}
-//点击刷新按钮
-- (void)rightBtnAction
-{
-    [self refreshAnimation];
-    [self refreshRightbarbuttonAction];
-}
-
-- (void)refreshRightbarbuttonAction
-{
-  
-    
-}
-//停止刷新动画
-- (void)stopAnimation
-{
-    [MBProgressHUD hideHUD];
-    [_reloadBtn.layer removeAllAnimations];
-    [_reloadBtn setImage:[UIImage imageNamed:@"nav_fresh"] forState:UIControlStateNormal];
-}
-
 
 - (void)setupNavigationBar:(UINavigationController *)naviController {
     

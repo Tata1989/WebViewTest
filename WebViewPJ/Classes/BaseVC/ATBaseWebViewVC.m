@@ -28,29 +28,31 @@
     [super viewWillAppear:animated];
     
     [self setupNavigationBar:self.navigationController];
-    [self setUpNavigationBarLeftBack];
+    if (self.canBack){
+          [self setUpNavigationBarLeftBack];
+    }
+  
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
     self.title = self.navigationItemTitle ? self.navigationItemTitle : @"亚洲旅游";
-   
-        self.navigationController.navigationBar.hidden = NO;
-    self.view.exclusiveTouch = YES;
 
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - kNavBarHeight)];
-    _webView.backgroundColor = UIColorFromRGB(0xcccccc);
-    _webView.delegate = self;
-    if (!self.webUrl) {
-        return;
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-kNavBarHeight)];
+    if (self.navigationController.navigationBarHidden == YES) {
+        _webView.frame = CGRectMake(0, -kStatusBarHeight, ScreenWidth, ScreenHeight+kStatusBarHeight);
     }
-     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
+    _webView.scalesPageToFit = YES;
+    _webView.delegate = self;
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
     [self.view addSubview:_webView];
+    [_webView loadRequest:request];
     
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,8 +83,24 @@
     NSLog(@"title      = %@",title);
     self.navigationItem.title = title;
     
+    //隐藏头部header
     NSString *hideHeaderJS = [webView stringByEvaluatingJavaScriptFromString:@"var header = document.getElementById('vlm-h-1');header.parentNode.removeChild(header);"];
     [webView stringByEvaluatingJavaScriptFromString:hideHeaderJS];
+    
+
+    //隐藏footer
+    if([webView.request.URL.absoluteString hasPrefix:kBaseURL]){
+        
+        NSString *hideFooerJS = [NSString stringWithFormat:@"var footer= document.getElementById('menu');footer.style.display = 'none';"];
+        [webView stringByEvaluatingJavaScriptFromString:hideFooerJS];
+        
+    }
+     //首页的搜素框位置修改
+    if ([self.navigationItemTitle isEqualToString:@"首页"]) {
+        NSString *toperJS = [NSString stringWithFormat:@"var toper = document.getElementsByClassName('toper')[0];toper.style.top = '20px';"];
+        [webView stringByEvaluatingJavaScriptFromString:toperJS];
+        
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -98,6 +116,7 @@
                 
                 ATBaseWebViewVC *webViewVC = [[ATBaseWebViewVC alloc] init];
                 webViewVC.webUrl = request.URL.absoluteString;
+                webViewVC.canBack = YES;
                 DDLog(@"push新的控制器");
                 [self.navigationController pushViewController:webViewVC animated:YES];
                 
@@ -110,6 +129,9 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    if ([NetworkTool networkStatus] == NO) {
+        [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
+    }
     NSLog(@"err0r =%@",error);
 }
 

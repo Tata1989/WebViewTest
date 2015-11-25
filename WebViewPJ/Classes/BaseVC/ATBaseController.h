@@ -8,23 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^RefreshBlock)();
 
 @interface ATBaseController : UIViewController
 
-@property (nonatomic, strong) RefreshBlock refreshBlock;
-
 - (void)setupNavigationBar:(UINavigationController *)naviController;
 
-- (void)rightBtnAction;
-
-
 - (void)setUpNavigationBarLeftBack;
-
-- (void)setUpNavigationBarRefresh;
-
-- (void)refreshRightbarbuttonAction;
-
-- (void)stopAnimation;
 
 @end
