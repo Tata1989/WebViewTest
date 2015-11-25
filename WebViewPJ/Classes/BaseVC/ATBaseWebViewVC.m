@@ -40,9 +40,10 @@
     self.title = self.navigationItemTitle ? self.navigationItemTitle : @"亚洲旅游";
 
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-kNavBarHeight)];
-    if (self.navigationController.navigationBarHidden == YES) {
+    if (self.navigationController.navigationBarHidden == YES && [self.navigationItemTitle isEqualToString:@"首页"]) {
         _webView.frame = CGRectMake(0, -kStatusBarHeight, ScreenWidth, ScreenHeight+kStatusBarHeight);
     }
+    DDLog(@"_webView.frame:%@",NSStringFromCGRect(_webView.frame));
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]];
     _webView.scalesPageToFit = YES;
     _webView.delegate = self;
@@ -50,7 +51,6 @@
     _webView.opaque = NO;
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
-    
     
 }
 
@@ -73,15 +73,15 @@
 
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidStartLoad");
+    DDLog(@"webViewDidStartLoad");
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidFinishLoad");
+    DDLog(@"webViewDidFinishLoad");
     
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    NSLog(@"title      = %@",title);
-    self.navigationItem.title = title;
+    DDLog(@"title      = %@",title);
+    self.navigationItem.title = [self getDomTitle:title];
     
     //隐藏头部header
     NSString *hideHeaderJS = [webView stringByEvaluatingJavaScriptFromString:@"var header = document.getElementById('vlm-h-1');header.parentNode.removeChild(header);"];
@@ -101,6 +101,8 @@
         [webView stringByEvaluatingJavaScriptFromString:toperJS];
         
     }
+    
+    DDLog(@"request_URL:%@",webView.request.URL.absoluteString);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -132,8 +134,20 @@
     if ([NetworkTool networkStatus] == NO) {
         [MBProgressHUD showMessage:@"当前网络不可用 请检查你的网络设置" time:3];
     }
-    NSLog(@"err0r =%@",error);
+    else{
+        [MBProgressHUD showMessage:@"请求失败，请重新加载" time:3];
+    }
+    DDLog(@"error =%@",error);
 }
-
+#pragma mark - 页面title字符串处理
+- (NSString *)getDomTitle:(NSString*)domTitle{
+    if (domTitle) {
+        NSArray *array = [domTitle componentsSeparatedByString:@"_"];
+        if (array.count > 0) {
+            return array[0];
+        }
+    }
+    return nil;
+}
 
 @end
