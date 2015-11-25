@@ -39,7 +39,7 @@
         self.navigationController.navigationBar.hidden = NO;
     self.view.exclusiveTouch = YES;
 
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - kNavBarHeight)];
     _webView.backgroundColor = UIColorFromRGB(0xcccccc);
     _webView.delegate = self;
     if (!self.webUrl) {

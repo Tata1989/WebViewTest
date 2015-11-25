@@ -84,6 +84,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 #define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 
 //*************************************导航设置相关*********************************
+
 #define SEGMENTCOLOR HEXCOLOR(0x3ea50cff)
 
 #define PRICE_COLOR HEXCOLOR(0xff3e1fff)
@@ -93,6 +94,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 #define NAVIGATION_TITLE_FONT_SIZE  17
 #define NAVIGATION_ITEM_FONT_SIZE   16
 #define SEGMENT_ITEM_FONT_SIZE      14
+
+
+#define kStatusBarHeight    20
+#define kNavBarHeight       64
+#define kTabarHeight        49
 
 
 
