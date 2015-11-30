@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "ATNavigationController.h"
-#import "MainWebView.h"
+#import "ATTabBarController.h"
 
 
 @interface AppDelegate ()
@@ -24,14 +24,14 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    MainWebView *mainVC = [[MainWebView alloc] init];
-//    mainVC.webUrl = @"http://cn.asiatravel.net/mobile/"; 
-    mainVC.webUrl = @"http://10.2.21.231/frame/index.html";
-    mainVC.navigationItemTitle = @"亚洲旅游";
+//    MainWebView *mainVC = [[MainWebView alloc] init];
+////    mainVC.webUrl = @"http://cn.asiatravel.net/mobile/"; 
+//    mainVC.webUrl = @"http://10.2.21.231/frame/index.html";
+//    mainVC.navigationItemTitle = @"亚洲旅游";
     
-    ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:mainVC];
+//    ATNavigationController *nav = [[ATNavigationController alloc] initWithRootViewController:mainVC];
     
-    self.window.rootViewController = nav;
+    self.window.rootViewController = [[ATTabBarController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

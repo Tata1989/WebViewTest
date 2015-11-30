@@ -11,6 +11,8 @@
 
 #import "ConfigTools.h"
 
+#import "NetworkTool.h"
+
 #import "UIImage+AT.h"
 #import "UIBarButtonItem+AT.h"
 #import "MBProgressHUD+AT.h"
